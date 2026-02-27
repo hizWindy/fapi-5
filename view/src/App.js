@@ -23,7 +23,7 @@ function App() {
     // Event type for input/checkbox changes
     const handleChange = (event) => {
         const { name, type, value, checked } = event.target;
-        setFormData(Object.assign(Object.assign({}, formData), { [name]: type === "checkbox" ? checked : value }));
+        setFormData((prev) => (Object.assign(Object.assign({}, prev), { [name]: type === "checkbox" ? checked : value })));
     };
     // Event type for form submission
     const handleSubmit = (event) => __awaiter(this, void 0, void 0, function* () {

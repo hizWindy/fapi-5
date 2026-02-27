@@ -48,16 +48,19 @@ function App() {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/generate-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          length: Number(formData.length),
-        }),
-      });
+      const response = await fetch(
+        "https://weblike-emory-etymologic.ngrok-free.dev//generate-password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...formData,
+            length: Number(formData.length),
+          }),
+        }
+      );
 
       const data: ApiResponse = await response.json();
 
