@@ -1,8 +1,26 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import "./App.css";
 
+// Define the type for your form state
+interface FormData {
+  name: string;
+  length: number;
+  include_uppercase: boolean;
+  include_lowercase: boolean;
+  include_numbers: boolean;
+  include_special: boolean;
+}
+
+// Define the type for your API response
+interface ApiResponse {
+  success: boolean;
+  data: {
+    password: string;
+  };
+}
+
 function App() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     length: 8,
     include_uppercase: false,
@@ -11,9 +29,10 @@ function App() {
     include_special: false,
   });
 
-  const [generatedPassword, setGeneratedPassword] = useState("");
+  const [generatedPassword, setGeneratedPassword] = useState<string>("");
 
-  const handleChange = (e) => {
+  // Event type for input/checkbox changes
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, type, value, checked } = e.target;
 
     setFormData({
@@ -22,7 +41,8 @@ function App() {
     });
   };
 
-  const handleSubmit = async (event) => {
+  // Event type for form submission
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
@@ -33,13 +53,14 @@ function App() {
         },
         body: JSON.stringify({
           ...formData,
-          length: Number(formData.length), // ensure number
+          length: Number(formData.length),
         }),
       });
 
-      const { success, data } = await response.json();
-      if (success) {
-        setGeneratedPassword(data.password);
+      const data: ApiResponse = await response.json();
+
+      if (data.success) {
+        setGeneratedPassword(data.data.password);
       } else {
         console.error("Failed to generate a password");
       }
