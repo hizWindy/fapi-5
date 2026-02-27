@@ -1,7 +1,13 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "target": "ES6",                 // Modern JavaScript
+    "module": "ESNext",              // Supports ES modules
+    "lib": ["DOM", "ESNext"],        // Browser + modern JS APIs
+    "jsx": "react-jsx",              // Modern JSX transform (React 17+)
+    "strict": true,                  // TypeScript strict mode (no implicit any)
+    "moduleResolution": "node",      // Standard Node module resolution
+    "esModuleInterop": true,         // Makes imports work correctly
+    "skipLibCheck": true             // Skips type checks for dependencies
+  },
+  "include": ["src"]                  // Compile all TS/TSX files in src/
 }
