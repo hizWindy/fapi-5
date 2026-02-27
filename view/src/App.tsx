@@ -49,7 +49,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "https://weblike-emory-etymologic.ngrok-free.dev//generate-password",
+        "https://weblike-emory-etymologic.ngrok-free.dev/generate-password",
         {
           method: "POST",
           headers: {
