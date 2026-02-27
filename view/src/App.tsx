@@ -32,8 +32,8 @@ function App() {
   const [generatedPassword, setGeneratedPassword] = useState<string>("");
 
   // Event type for input/checkbox changes
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, type, value, checked } = e.target;
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, type, value, checked } = event.target;
 
     setFormData({
       ...formData,
